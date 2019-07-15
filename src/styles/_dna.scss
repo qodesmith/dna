@@ -1,0 +1,53 @@
+$time: 1.5s;
+
+
+.circle {
+  @extend .bg-blue;
+  @extend .z1;
+
+  border-radius: 50%;
+  animation: circleLeft $time infinite ease-in-out;
+
+  &.two {
+    @extend .bg-red;
+
+    animation-name: circleRight;
+  }
+}
+
+.bar {
+  @extend .h-100;
+  @extend .bg-white;
+
+  transform-origin: center;
+  animation: bar $time infinite ease-out;
+
+  &.two {
+    @extend .absolute;
+    @extend .w-100;
+    @extend .top-0;
+
+    animation: bar $time infinite ease-out reverse;
+  }
+}
+
+@keyframes circleLeft {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(calc(100% * 7)); z-index: 1; }
+  51% { z-index: 2; }
+  100% { transform: translateX(0); z-index: 2; }
+}
+
+@keyframes circleRight {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(calc(-100% * 7)); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes bar {
+  0% { transform: scaleX(1.1); }
+  25% { transform: scaleX(0); }
+  50% { transform: scaleX(1.1); }
+  75% { transform: scaleX(0); }
+  100% { transform: scaleX(1.1); }
+}
