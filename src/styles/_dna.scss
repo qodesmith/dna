@@ -1,12 +1,21 @@
 $time: 1.5s;
 
+.circle-container {
+  @extend .z1;
+
+  animation: circleContainerLeft $time infinite ease-in-out;
+
+  &.two {
+    animation-name: circleContainerRight;
+  }
+}
 
 .circle {
   @extend .bg-blue;
-  @extend .z1;
 
   border-radius: 50%;
-  animation: circleLeft $time infinite ease-in-out;
+  animation: circleLeft $time infinite linear;
+
 
   &.two {
     @extend .bg-red;
@@ -31,17 +40,33 @@ $time: 1.5s;
   }
 }
 
-@keyframes circleLeft {
+@keyframes circleContainerLeft {
   0% { transform: translateX(0); }
   50% { transform: translateX(calc(100% * 7)); z-index: 1; }
   51% { z-index: 2; }
   100% { transform: translateX(0); z-index: 2; }
 }
 
-@keyframes circleRight {
+@keyframes circleContainerRight {
   0% { transform: translateX(0); }
   50% { transform: translateX(calc(-100% * 7)); }
   100% { transform: translateX(0); }
+}
+
+@keyframes circleLeft {
+  0% { transform: scale(1); }
+  25% { transform: scale(.5); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.5); }
+  0% { transform: scale(1); }
+}
+
+@keyframes circleRight {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.5); }
+  50% { transform: scale(1); }
+  75% { transform: scale(.5); }
+  0% { transform: scale(1); }
 }
 
 @keyframes bar {
